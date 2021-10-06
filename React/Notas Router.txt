@@ -1,0 +1,39 @@
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+
+Por convension es:
+
+return (
+<Router>
+	<div>
+		<Switch>
+
+
+Se definen las rutas posibles a cada componente:
+
+<Route exact path='/' component={}/>
+El exact es si es igual el link
+El path puede ser el que queramos
+El component es el que queremos que se muestre en lugar de nustro Componente
+
+Se hace un Navbar con <Link to='./' y donde queramos que muestre.
+
+Si se recibe una ruta que no existe se hace:
+
+<Redirect to='/' />
+
+---
+En el Navbar que redireccione se puede usar Link o NavLink
+
+el Link es simplemente
+
+<Link to='/'> </Link>
+
+El navLink se puede hacer algo como 
+
+                    <NavLink exact activeClassName='active' className="nav-item nav-link" to="/">Login</NavLink>

@@ -7,6 +7,8 @@ Pasos instalación Enzyme React 17 en adelante:
 
 1.3 Instalamos Adaptador para React 17 (noten que agregamos algo adicional al final para que pueda correr) : npm install --save-dev @wojtekmaj/enzyme-adapter-react-17 --legacy-peer-deps
 
+1.35 Y tambien esto: npm install --save-dev @testing-library/react-hooks
+
 1.4 En el archivo src/setupTests.js agregamos: 
 
 import Enzyme from 'enzyme';
