@@ -14,6 +14,8 @@ return (
 		<Switch>
 
 
+El Router va solo en el primer componente de rutas, AppRouter, en los hijos no
+
 Se definen las rutas posibles a cada componente:
 
 <Route exact path='/' component={}/>
@@ -26,6 +28,8 @@ Se hace un Navbar con <Link to='./' y donde queramos que muestre.
 Si se recibe una ruta que no existe se hace:
 
 <Redirect to='/' />
+
+Redirect dentro del Switch.
 
 ---
 En el Navbar que redireccione se puede usar Link o NavLink
