@@ -1,52 +1,88 @@
-1- Hacer install de las librerias de pruebas:
-{
-Pasos instalación Enzyme React 17 en adelante:
+### 1- Hacer install de las librerias de pruebas: { Pasos instalación Enzyme
+#### React 17 en adelante: 
+
 1.1 Instalamos Enzyme : 
-npm install --save-dev enzyme
 
-1.2 Instalamos Enzyme-to-json : 
-npm install --save-dev enzyme-to-json
+###### npm install --save-dev enzyme
 
-1.3 Instalamos Adaptador para React 17 (noten que agregamos algo adicional al final para que pueda correr) : 
-npm install --save-dev @wojtekmaj/enzyme-adapter-react-17 --legacy-peer-deps
+1.2 Instalamos Enzyme-to-json :
 
-1.35 Y tambien esto: 
-npm install --save-dev @testing-library/react-hooks
+###### npm install --save-dev enzyme-to-json
 
-1.4 En el archivo src/setupTests.js agregamos: 
+1.3 Instalamos Adaptador para React 17 (noten que agregamos algo
+adicional al final para que pueda correr) : 
+
+###### npm install --save-dev @wojtekmaj/enzyme-adapter-react-17 --legacy-peer-deps
+
+1.35 Y tambien esto si tenemos que testear custom hooks: 
+
+###### npm install --save-dev @testing-library/react-hooks
+
+
+
+1.45 Y si hacemos tests asincronicos de reducers:
+
+https://www.npmjs.com/package/redux-mock-store
+
+##### npm i redux-mock-store
+
+
+
+1.4 En el archivo src/setupTests.js agregamos:
+
+`
 
 import Enzyme from 'enzyme';
+
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import {createSerializer} from 'enzyme-to-json';
- 
- 
+
+import { createSerializer } from 'enzyme-to-json';
+
+
+
 Enzyme.configure({ adapter: new Adapter() });
-expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
-}
+
+expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
+
+`
 
 2- Ejecutamos npm test para ver que todo ande bien.
 
-3- Creamos la carpeta 'tests' y dentro de ella el archivo que querramos probar, por ejemplo si quiero probar el archivo ListItem que esta en mi src/components/ListItem tengo que crear la carpeta components en mi carpeta de tests para seguir el path correctamente.
+3- Creamos la carpeta 'tests' y dentro de ella el archivo que querramos
+probar, por ejemplo si quiero probar el archivo ListItem que esta en mi
+src/components/ListItem tengo que crear la carpeta components en mi
+carpeta de tests para seguir el path correctamente.
 
-4- Hacemos un describe sobre lo que estamos testeando (Opcional, esta bueno igual). Buen ejemplo de desc: 'Pruebas en <ListItem/>'
+4- Hacemos un describe sobre lo que estamos testeando (Opcional, esta
+bueno igual). Buen ejemplo de desc: 'Pruebas en <ListItem/>'
 
-5- Creamos el test con una descripcion de lo que tendria que cumplir la prueba.
+5- Creamos el test con una descripcion de lo que tendria que cumplir la
+prueba.
 
 6- En el callback del test ejecutamos la prueba creando el wrapper:
 
-//Primer prueba hacer match con snapshot (esta bueno porque sirve para las siguientes.)
-//Hay que ver que shallow se importe de enzyme
-const wrapper = shallow(<ListItem/>) //Recordar importar el componente que hacemos shallow 
+//Primer prueba hacer match con snapshot (esta bueno porque sirve para
+las siguientes.) //Hay que ver que shallow se importe de enzyme const
+wrapper = shallow(<ListItem/>) //Recordar importar el componente que
+hacemos shallow
 
-7- Como la primera prueba suele ser una prueba para ver si coincide lo que nos da se hace el siguiente expect
+7- Como la primera prueba suele ser una prueba para ver si coincide lo
+que nos da se hace el siguiente expect
 
 expect(wrapper).toMatchSnapshot();
 
-// y se nos va a crear una carpeta con snapshots si salio bien que deberia mostrarnos un html o xml en el js que crea sobre lo que hicimos el test.
+// y se nos va a crear una carpeta con snapshots si salio bien que
+deberia mostrarnos un html o xml en el js que crea sobre lo que hicimos
+el test.
 
-8- En caso de que cambiemos algo en el archivo base nos va a tirar que no coincide con el snapshot, si es un cambio que sirve es apretar la u que se actualiza el snapshot, sino es una verificacion del error y lo corregimos.
+8- En caso de que cambiemos algo en el archivo base nos va a tirar que
+no coincide con el snapshot, si es un cambio que sirve es apretar la u
+que se actualiza el snapshot, sino es una verificacion del error y lo
+corregimos.
 
-9- Si el componente que queremos probar tiene importado props, lo que hacemos es en el test de ese componente dentro de la desc creamos 2 constantes que puedan reemplazar esas props para poder probarlo.
+9- Si el componente que queremos probar tiene importado props, lo que
+hacemos es en el test de ese componente dentro de la desc creamos 2
+constantes que puedan reemplazar esas props para poder probarlo.
 
 {shallow(<ListItem cant={cantidad} saludo={saludo})}
 
@@ -75,7 +111,7 @@ Otro ejemplo podria ser:
 
         const div = wrapper.find('div');
         const className = div.prop('className');
-
+    
         expect(className.includes('card')).toBe(true);
 
 -----------------
@@ -89,11 +125,11 @@ Tendria que tirar error porque node no detecta el cuadro y el evento en si
 
 13.3- Para mandar el evento hacemos:
 
-	input.simulate('change', {target: {value})
+    input.simulate('change', {target: {value})
 
 13.4- Previamente definimos el value ese
 
-	const value = "Hola Mundo"
+    const value = "Hola Mundo"
 
 
 -----------------
@@ -106,17 +142,17 @@ Tendria que tirar error porque node no detecta el cuadro y el evento en si
         wrapper.find('form').simulate('submit', {
             preventDefault() { }
         })
-        
+
 14.2- Hacer un beforeEach en el desc para que se ejecuten funciones antes de cada test
 
         const value = 'Hello World'
         
         wrapper.find('input').simulate('change', { target: { value } });
-
+    
         wrapper.find('form').simulate('submit', {
             preventDefault() { }
         })
-
+    
         // expect(setCategories).toHaveBeenCalled();
         expect(setCategories).toHaveBeenCalledTimes(1);
         
@@ -130,7 +166,7 @@ Tendria que tirar error porque node no detecta el cuadro y el evento en si
 
 15.1- Tener el custom hook importado, y abajo de los imports hacer: 
 
-jest.mock('IMPORT DEL CUSTOM HOOK')	
+jest.mock('IMPORT DEL CUSTOM HOOK') 
 
 15.2- Hay que falsear la data para poder probarlo, porque ya con esa funcion de jest entra en el custom hook segun lo que el hook nos devuelve:
 
@@ -155,7 +191,7 @@ Y despues en el segundo test se cambian los datos segun va cambiando la parte qu
             url: 'https://localhost/photo.jpg',
             title: 'Testt'
         }];
-
+    
         useFetchGifs.mockReturnValue({
             data: gifs,
             loading: false
@@ -195,5 +231,6 @@ y en la mayoria de los casos se suele hacer esto:
     const { result } = renderHook(() => useFetchGifs('One Punch'))
     const {data, loading} = result.current;
 
-16.4- Se puede trabajar esperando un cambio en el estado del hook con el waitForNextUpdate que sirve cuando el return
-del hook es un setState, devuelve promise
+16.4- Se puede trabajar esperando un cambio en el estado del hook con el
+waitForNextUpdate que sirve cuando el return del hook es un setState,
+devuelve promise
