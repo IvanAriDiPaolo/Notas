@@ -1,7 +1,7 @@
 Inicializar proyecto Redux - redux-thunk
 
 1)- Instalar las dependencias
-  npm install react-redux redux redux-thunk
+  npm install redux react-redux redux-thunk
 
 2)- Creacion de las carpetas en el src
   types - reducers - rootReducer - store - actions  
@@ -28,7 +28,7 @@ Ejemplo reducers:
 Definimos un estado inicial de nuestro reducer en base a lo que queremos que realice
 
   const initialState = {
-      modalOpen: false
+      openModal: false
   };
 
 Creamos la estructura de nuestro reducer
@@ -38,7 +38,7 @@ Creamos la estructura de nuestro reducer
           case types.uiOpenModel:
               return {
                   ...state,
-                  modalOpen: true
+                  openModal: true
               }
 
           default:
@@ -152,4 +152,4 @@ Ejemplo de uso:
 Ejemplo de uso:
 
   useSelector // const state = useSelector( (state) => state );
-  const { modalOpen } = useSelector( (state) => state.ui );
+  const { openModal } = useSelector( (state) => state.ui );

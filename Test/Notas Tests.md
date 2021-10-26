@@ -20,7 +20,7 @@ adicional al final para que pueda correr) :
 
 
 
-1.45 Y si hacemos tests asincronicos de reducers:
+1.45 Y si hacemos tests de reducers usando store:
 
 https://www.npmjs.com/package/redux-mock-store
 
@@ -30,7 +30,7 @@ https://www.npmjs.com/package/redux-mock-store
 
 1.4 En el archivo src/setupTests.js agregamos:
 
-`
+```
 
 import Enzyme from 'enzyme';
 
@@ -44,7 +44,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 
-`
+```
 
 2- Ejecutamos npm test para ver que todo ande bien.
 
