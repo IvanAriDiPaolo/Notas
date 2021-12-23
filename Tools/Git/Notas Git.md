@@ -163,7 +163,6 @@ git stash apply <
 
 git stash show stash@{num} < Te muestra info de ese stash
 
-
 ---
 Rebase
 ---

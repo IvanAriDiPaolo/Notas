@@ -94,6 +94,7 @@ router.post('/new', [
     validateFields,
 ], createUser)
 ```
+<<<<<<< HEAD
 Sin parentesis
 
 Si un middleware es igual para muchas peticiones se pone:
@@ -126,3 +127,6 @@ router.delete('/:id', [
 
 module.exports = router;
 ```
+=======
+Sin parentesis
+>>>>>>> 24eef37be04c113da347f41d1cd9c2697b0991ee
